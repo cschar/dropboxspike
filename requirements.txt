@@ -1,0 +1,5 @@
+django-sslserver
+dropbox
+Django~=1.8
+ipython==4.2.0
+ipdb==0.9.3

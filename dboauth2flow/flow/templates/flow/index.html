@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <h3>{{request.user}}</h3>
+        <a href="{% url 'dropbox_auth_start' %}"> login via dbx </a>
+        <a href="{% url 'logout' %}"> logout </a>
+
+
+</body>
+</html>
