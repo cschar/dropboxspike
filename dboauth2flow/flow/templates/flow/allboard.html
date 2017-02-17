@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>all boards</title>
+</head>
+<body>
+
+{% for board in all_boards %}
+<h1> {{ board.name}}</h1>
+  <h2> scenes </h2>
+  {% for scene in board.scenes %}
+     <p> {{ scene.name }} </p>
+  {% endfor %}
+  <h2> submissions </h2>
+{% for submission in board.submissions %}
+    {{ submission.name }}
+{% endfor %}
+{% endfor %}
+
+</body>
+</html>

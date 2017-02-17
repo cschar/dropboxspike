@@ -36,17 +36,17 @@ def dropbox_auth_finish(request):
         flow = get_dropbox_auth_flow(request.session)
         oauth_result = flow.finish(request.GET)
 
-    except BadRequestException, e:
+    except BadRequestException as e:
         raise Http404
-    except BadStateException, e:
+    except BadStateException as e:
         # Start the auth flow again.
         redirect("/dropbox-auth-start")
-    except CsrfException, e:
+    except CsrfException as e:
         raise Http404
-    except NotApprovedException, e:
+    except NotApprovedException as e:
         print('Not approved?  Why not?')
         return redirect("/home")
-    except ProviderException, e:
+    except ProviderException as e:
         logger.log("Auth error: %s" % (e,))
         raise Http404
 
