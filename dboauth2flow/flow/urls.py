@@ -1,14 +1,14 @@
 from django.conf.urls import include, url
 
-from .views import flow, storyboard
+from .views import oauth, storyboard
 
 urlpatterns = [
-    url(r'^dropbox-auth-start/?$', flow.dropbox_auth_start, name='dropbox_auth_start'),
-    url(r'^dropbox-auth-finish$', flow.dropbox_auth_finish, name='dropbox_auth_finish'),
-    url(r'^logout$', flow.logout, name='logout'),
+    #auth
+    url(r'^dropbox-auth-start/?$', oauth.dropbox_auth_start, name='dropbox_auth_start'),
+    url(r'^dropbox-auth-finish$', oauth.dropbox_auth_finish, name='dropbox_auth_finish'),
+    url(r'^logout$', oauth.logout, name='logout'),
 
-
-    url(r'^$', flow.home, name='home'),
-    url(r'^story/(?P<slug>[\w\d]+)$', storyboard.story),
-    url(r'^story$', storyboard.all_story),
+    url(r'^$', storyboard.home, name='home'),
+    url(r'^story/(?P<slug>[\w\d]+)$', storyboard.story_detail),
+    url(r'^story$', storyboard.story_list),
 ]

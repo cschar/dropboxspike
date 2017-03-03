@@ -1,16 +1,13 @@
-import os
 import logging
+import os
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout as auth_logout
-from django.core.urlresolvers import reverse
-from django.http import HttpResponse, Http404
-from django.shortcuts import render, redirect
-from dropbox import dropbox
-
+from django.http import Http404
+from django.shortcuts import redirect
 from dropbox.oauth import *
 
-from flow.models import DropboxToken
+from ..models import DropboxToken
 
 logger = logging.getLogger(__name__)
 
@@ -67,28 +64,6 @@ def dropbox_auth_finish(request):
 
 
         return redirect('home')
-
-
-
-
-def home(request):
-    context = {}
-    text = "<h3> user: %s </h3> " % request.user
-    text += """<a href="%s"> login to dbx </a><br/>""" % reverse('dropbox_auth_start')
-    text += """<a href="%s"> logout </a><br/>""" % reverse('logout')
-
-    if request.user.is_authenticated():
-
-        app_key = request.user.dbx.access_token
-        dbx = dropbox.Dropbox(app_key)
-        text += """<br/> logged with: %s """ % request.session['dbx_oauth']
-
-        for entry in dbx.files_list_folder('').entries:
-            text +=" <br/> %s" % entry.name
-
-
-    # return render(request, 'flow/index.html', context)
-    return HttpResponse(text)
 
 
 def logout(request):

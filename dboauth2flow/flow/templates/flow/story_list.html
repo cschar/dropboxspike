@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <title>all boards</title>
+</head>
+<body>
+
+<div class="container">
+
+{% for board in all_boards %}
+  <div class="row">
+  <div class="col">
+  <h1> {{ board.name}}</h1>
+  <h2> scenes </h2>
+  {% for scene_name, scene_content in board.scenes.items %}
+    <p> {{ scene_name }} </p>
+    <!--<img src="{{ scene_content.preview_link }}" width="150px" height="100px">-->
+    {% for scene_frame_link in scene_content.scene_frames %}
+      <img src="{{ scene_frame_link }}" width="150px" height="100px">
+    {% endfor %}
+  {% endfor %}
+  </div>
+  <div class="col">
+  <h2> submissions </h2>
+  {% for sub_scene_name, sub_content in board.submissions.items %}
+      <p> {{ sub_scene_name }} </p>
+      <img src="{{ sub_content.preview_link }}" width="150px" height="100px">
+      {% for render_frame_link in sub_content.render_frames %}
+        <img src="{{ render_frame_link }}" width="100px" height="60px">
+      {% endfor %}
+  {% endfor %}
+  </div>
+  </div>
+{% endfor %}
+
+ <hr>
+</div>
+</body>
+</html>
