@@ -1,0 +1,51 @@
+{% extends "pic/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %} pic index {% endblock title %}
+
+{% block content %}
+<div class="row">
+<div class="col">
+  <form action="{% url 'upload_pic' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <p>
+        <input id="id_images" type="file" class="" name="images" multiple>
+    </p>
+    <input type="submit" value="Submit" />
+</form>
+    <form action="{% url 'upload_gif' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <p>
+        <input id="id_gifs" type="file" class="" name="gifs" multiple>
+    </p>
+    <input type="submit" value="Submit" />
+</form>
+</div>
+  <div class="col">
+    {% for pic in all_pics %}
+
+        <img src="{{ pic.pic.url }}" width="100" height="100" />
+    {% endfor %}
+  </div>
+    <div class="col" id="subs" >
+
+    {% for sub in all_subs %}
+
+        <img src="{{ sub.gif.url }}" width="100" height="100" />
+    {% endfor %}
+
+
+  </div>
+
+  <button id="showSub"> toggle</button>
+</div>
+
+{% endblock content %}
+
+    {% block extra_footer_js %}
+  <script>
+    $('#subs').toggle()
+    $('#showSub').click(function(){
+      $('#subs').toggle()
+    });
+  </script>
+    {% endblock extra_footer_js %}

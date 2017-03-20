@@ -4,21 +4,12 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'rdh4m3l2r)p(5e3&cco)_pd28twwoyfs5qi=-1*uh^qh%hp7iu'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
-# Application definition
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -28,7 +19,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'flow',
-    'sslserver'
+    'pic',
+    'sslserver',
+    'django_extensions'
 )
 
 AUTHENTICATION_BACKENDS = ['flow.backend.CrappyDBXBackend']
@@ -65,9 +58,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'spike.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -75,9 +65,6 @@ DATABASES = {
     }
 }
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -93,5 +80,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+# https://timmyomahony.com/blog/static-vs-media-and-root-vs-path-in-django/
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static/'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "/pic_uploads"),
+#     os.path.join(BASE_DIR, "/pic_folder"),
+# ]

@@ -3,3 +3,5 @@ dropbox
 Django~=1.10
 ipython==4.2.0
 ipdb==0.10.1
+pillow==4.0.0
+django-extensions

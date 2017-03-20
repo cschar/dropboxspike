@@ -9,3 +9,4 @@
 #django
 static
 db.sqlite3
+media
